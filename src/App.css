@@ -77,16 +77,46 @@
 }
 
 .hero-subtitle {
-  font-size: clamp(1.1rem, 2vw, 1.3rem);
+  font-size: clamp(1rem, 2vw, 1.25rem);
   color: var(--text-secondary);
   max-width: 600px;
-  margin-bottom: 3rem;
-  line-height: 1.6;
+  margin-bottom: 2.5rem;
 }
 
 .hero-cta {
   display: flex;
-  gap: 1.5rem;
+  gap: 1rem;
+}
+
+/* About Section */
+.about-section {
+  padding: 4rem 0;
+}
+
+.about-content {
+  padding: 3rem;
+  border-radius: 16px;
+  text-align: left;
+  line-height: 1.8;
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+}
+
+.about-content strong {
+  color: var(--text-primary);
+}
+
+.about-content p {
+  margin-bottom: 1.5rem;
+}
+
+.about-content p:last-child {
+  margin-bottom: 0;
+}
+
+/* Skills Section */
+.skills-section {
+  padding: 4rem 0;
 }
 
 .btn-primary, .btn-secondary {

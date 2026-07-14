@@ -7,6 +7,7 @@ function App() {
         <div className="nav-content container">
           <h2 className="logo">Mark.</h2>
           <div className="nav-links">
+            <a href="#about">About</a>
             <a href="#skills">Skills</a>
             <a href="#certifications">Certifications</a>
             <a href="#contact">Contact</a>
@@ -27,6 +28,18 @@ function App() {
           <div className="hero-cta">
             <a href="#certifications" className="btn-primary">View Credentials</a>
             <a href="https://github.com/Markyy0411" target="_blank" rel="noreferrer" className="btn-secondary">GitHub Profile</a>
+          </div>
+        </section>
+
+        <section id="about" className="about-section">
+          <div className="about-content glass-panel">
+            <h2 className="section-title">About Me</h2>
+            <p>
+              Welcome! I'm <strong>Mark Angel Guevarra</strong>, a passionate Information Technology professional specializing in Cybersecurity, Network Administration, and IT Automation. With a strong foundation in building secure, scalable systems, I thrive at the intersection of infrastructure and innovation.
+            </p>
+            <p>
+              I hold a Bachelor of Science in Information Technology and am driven by continuous learning—having earned 18 industry-recognized certifications from tech leaders like <strong>Google, Cisco, AWS, and Microsoft</strong>. Whether it's defending networks against emerging threats, automating complex workflows with Python, or engineering cloud solutions, I am dedicated to creating secure and highly efficient digital environments.
+            </p>
           </div>
         </section>
 
