@@ -201,7 +201,8 @@ function App() {
             I build <span className="highlight-purple">Secure & Automated</span> Systems.
           </h1>
           <p className="hero-subtitle">
-            Bachelor of Science in Information Technology | Network Administrator | Cisco Certified | Cybersecurity Analyst
+            Bachelor of Science in Information Technology <br/>
+            Network Administrator | Cisco Certified | Cybersecurity Analyst
           </p>
           <div className="hero-cta">
             <a href="#certifications" className="btn-primary">View Credentials</a>
