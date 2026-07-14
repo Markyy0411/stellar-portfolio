@@ -1,4 +1,7 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
+import { TypeAnimation } from 'react-type-animation';
+import Particles from "react-tsparticles";
+import { loadSlim } from "tsparticles-slim";
 import './App.css'
 
 // Animated Icons
@@ -101,7 +104,9 @@ const certData = [
     image: '/certs/google-python.png',
     description: 'This six-course certificate, developed by Google, is designed to provide IT professionals with in-demand skills -- including Python, Git, and IT automation.',
     difficulty: 'Advanced',
-    effort: 'Requires passing rigorous programming assignments, mastering version control with Git, and automating system administration tasks with Python scripts.'
+    effort: 'Requires passing rigorous programming assignments, mastering version control with Git, and automating system administration tasks with Python scripts.',
+    badgeId: 'ac8499cf-025c-4b72-84b1-92f836ad95b7',
+    verifyUrl: 'https://www.credly.com/badges/ac8499cf-025c-4b72-84b1-92f836ad95b7'
   },
   {
     id: 'google-cyber',
@@ -110,7 +115,9 @@ const certData = [
     image: '/certs/google-cyber.png',
     description: 'A comprehensive program covering the fundamental concepts of cybersecurity, including network security, Linux, SQL, and SIEM tools.',
     difficulty: 'Intermediate',
-    effort: 'Requires completing multiple hands-on labs simulating real-world security breaches, configuring firewalls, and analyzing packet captures.'
+    effort: 'Requires completing multiple hands-on labs simulating real-world security breaches, configuring firewalls, and analyzing packet captures.',
+    badgeId: '851998ed-3d5b-4ed3-93b5-63ec5bb29e60',
+    verifyUrl: 'https://www.credly.com/badges/851998ed-3d5b-4ed3-93b5-63ec5bb29e60'
   },
   {
     id: 'aws-cloud',
@@ -119,7 +126,9 @@ const certData = [
     image: '/certs/aws-cloud.png',
     description: 'Prepares students for entry-level cloud computing careers, focusing on deploying, managing, and operating scalable systems on AWS.',
     difficulty: 'Advanced',
-    effort: 'Requires a deep understanding of AWS services, networking, and security, proven through complex infrastructure deployment labs.'
+    effort: 'Requires a deep understanding of AWS services, networking, and security, proven through complex infrastructure deployment labs.',
+    badgeId: 'AWS Academy Graduate',
+    verifyUrl: '#'
   },
   {
     id: 'microsoft-excel',
@@ -128,7 +137,9 @@ const certData = [
     image: '/certs/microsoft.png',
     description: 'Validates skills in creating and managing worksheets and workbooks, creating cells and ranges, creating tables, and applying formulas and functions.',
     difficulty: 'Intermediate',
-    effort: 'Requires passing a strict, timed, proctored exam demonstrating mastery over advanced data manipulation and complex nested formulas.'
+    effort: 'Requires passing a strict, timed, proctored exam demonstrating mastery over advanced data manipulation and complex nested formulas.',
+    badgeId: '47299149',
+    verifyUrl: 'https://verify.certiport.com'
   },
   {
     id: 'cisco-cyber',
@@ -137,7 +148,9 @@ const certData = [
     image: '/certs/cisco-cyber.png',
     description: 'Explores cyber trends, threats, and staying safe in cyberspace, protecting personal and company data.',
     difficulty: 'Beginner',
-    effort: 'Requires understanding core security principles, threat vectors, and basic mitigation strategies.'
+    effort: 'Requires understanding core security principles, threat vectors, and basic mitigation strategies.',
+    badgeId: '437f35d9-be6e-42d4-90f7-3b221725e2d5',
+    verifyUrl: 'https://www.credly.com/badges/437f35d9-be6e-42d4-90f7-3b221725e2d5'
   },
   {
     id: 'cisco-ethical',
@@ -146,7 +159,9 @@ const certData = [
     image: '/certs/cisco-ethical.png',
     description: 'Focuses on offensive security tactics to discover and patch vulnerabilities before malicious actors can exploit them.',
     difficulty: 'Advanced',
-    effort: 'Requires passing intensive penetration testing labs, mastering reconnaissance, scanning, gaining access, and covering tracks.'
+    effort: 'Requires passing intensive penetration testing labs, mastering reconnaissance, scanning, gaining access, and covering tracks.',
+    badgeId: 'b5d36473-5cfb-4281-85ea-a4f26ae85439',
+    verifyUrl: 'https://www.credly.com/badges/b5d36473-5cfb-4281-85ea-a4f26ae85439'
   },
   {
     id: 'cisco-linux',
@@ -155,7 +170,9 @@ const certData = [
     image: '/certs/cisco-linux.png',
     description: 'Validates foundational knowledge in the Linux operating system and open-source software.',
     difficulty: 'Intermediate',
-    effort: 'Requires navigating the Linux command line, managing files, understanding permissions, and basic bash scripting.'
+    effort: 'Requires navigating the Linux command line, managing files, understanding permissions, and basic bash scripting.',
+    badgeId: 'dd8c9f3f-ebc3-4b1c-bafe-ba3721074683',
+    verifyUrl: 'https://www.credly.com/badges/dd8c9f3f-ebc3-4b1c-bafe-ba3721074683'
   },
   {
     id: 'cisco-networking',
@@ -164,7 +181,9 @@ const certData = [
     image: '/certs/cisco-networking.png',
     description: 'Covers the architecture, structure, functions, components, and models of the Internet and other computer networks.',
     difficulty: 'Intermediate',
-    effort: 'Requires understanding the OSI and TCP/IP models, IP addressing, and configuring basic network topologies.'
+    effort: 'Requires understanding the OSI and TCP/IP models, IP addressing, and configuring basic network topologies.',
+    badgeId: '3fd3c79f-1906-4631-a788-986747166767',
+    verifyUrl: 'https://www.credly.com/badges/3fd3c79f-1906-4631-a788-986747166767'
   },
   {
     id: 'cisco-os-basics',
@@ -173,7 +192,9 @@ const certData = [
     image: '/certs/cisco-os-basics.png',
     description: 'Provides a foundational understanding of operating system configuration and management.',
     difficulty: 'Beginner',
-    effort: 'Requires grasping process management, memory management, and file systems across Windows and Linux environments.'
+    effort: 'Requires grasping process management, memory management, and file systems across Windows and Linux environments.',
+    badgeId: 'f7bc993d-1a03-4257-af44-911cce59d82a',
+    verifyUrl: 'https://www.credly.com/badges/f7bc993d-1a03-4257-af44-911cce59d82a'
   },
   {
     id: 'cisco-hardware',
@@ -182,7 +203,9 @@ const certData = [
     image: '/certs/cisco-hardware.png',
     description: 'Focuses on the internal components of a computer, assembling a system, and troubleshooting hardware issues.',
     difficulty: 'Beginner',
-    effort: 'Requires identifying components, understanding their functions, and solving practical hardware failure scenarios.'
+    effort: 'Requires identifying components, understanding their functions, and solving practical hardware failure scenarios.',
+    badgeId: '5d7f447d-c596-49f3-b780-cfb8a831c15d',
+    verifyUrl: 'https://www.credly.com/badges/5d7f447d-c596-49f3-b780-cfb8a831c15d'
   },
   {
     id: 'cisco-ite',
@@ -191,7 +214,9 @@ const certData = [
     image: '/certs/cisco-ite.png',
     description: 'A comprehensive curriculum covering PC hardware and software, mobile devices, networking, and troubleshooting.',
     difficulty: 'Intermediate',
-    effort: 'Requires passing extensive theoretical exams and practical labs covering hardware diagnostics and software configurations.'
+    effort: 'Requires passing extensive theoretical exams and practical labs covering hardware diagnostics and software configurations.',
+    badgeId: '8c6d1b2e-3905-424e-ae40-0cffdded1655',
+    verifyUrl: 'https://www.credly.com/badges/8c6d1b2e-3905-424e-ae40-0cffdded1655'
   },
   {
     id: 'cisco-ai',
@@ -200,7 +225,9 @@ const certData = [
     image: '/certs/cisco-ai.png',
     description: 'Explores the foundations of Artificial Intelligence, Machine Learning, and their real-world applications.',
     difficulty: 'Intermediate',
-    effort: 'Requires grasping the concepts of neural networks, data modeling, and ethical considerations in AI deployment.'
+    effort: 'Requires grasping the concepts of neural networks, data modeling, and ethical considerations in AI deployment.',
+    badgeId: 'b0527a73-a92c-4ab2-85dd-27e529084793',
+    verifyUrl: 'https://www.credly.com/badges/b0527a73-a92c-4ab2-85dd-27e529084793'
   },
   {
     id: 'cisco-iot',
@@ -209,7 +236,9 @@ const certData = [
     image: '/certs/cisco-iot.png',
     description: 'Covers the Internet of Things, transforming digital business by connecting billions of smart devices.',
     difficulty: 'Beginner',
-    effort: 'Requires understanding IoT architectures, sensor networks, and data flow from edge devices to the cloud.'
+    effort: 'Requires understanding IoT architectures, sensor networks, and data flow from edge devices to the cloud.',
+    badgeId: '14ff4624-5864-47c4-8068-2b35bbd08f8c',
+    verifyUrl: 'https://www.credly.com/badges/14ff4624-5864-47c4-8068-2b35bbd08f8c'
   },
   {
     id: 'cisco-data-science',
@@ -218,7 +247,9 @@ const certData = [
     image: '/certs/cisco-data-science.png',
     description: 'Provides a foundation in gathering, analyzing, and visualizing data to make informed decisions.',
     difficulty: 'Intermediate',
-    effort: 'Requires applying statistical methods and utilizing Python libraries to extract insights from raw datasets.'
+    effort: 'Requires applying statistical methods and utilizing Python libraries to extract insights from raw datasets.',
+    badgeId: 'e96f5357-69b0-4416-ad9d-d51818948396',
+    verifyUrl: 'https://www.credly.com/badges/e96f5357-69b0-4416-ad9d-d51818948396'
   },
   {
     id: 'cisco-digital-awareness',
@@ -227,7 +258,9 @@ const certData = [
     image: '/certs/cisco-digital-awareness.png',
     description: 'Focuses on responsible and secure use of digital technologies in professional environments.',
     difficulty: 'Beginner',
-    effort: 'Requires demonstrating proficiency in digital communication, privacy, and online safety best practices.'
+    effort: 'Requires demonstrating proficiency in digital communication, privacy, and online safety best practices.',
+    badgeId: 'c425f47e-9cb1-4262-95a2-e55f5f630cc4',
+    verifyUrl: 'https://www.credly.com/badges/c425f47e-9cb1-4262-95a2-e55f5f630cc4'
   },
   {
     id: 'cisco-data-analytics',
@@ -236,7 +269,9 @@ const certData = [
     image: '/certs/cisco-data-analytics.png',
     description: 'Covers the fundamentals of data analysis, focusing on transforming data into actionable insights.',
     difficulty: 'Intermediate',
-    effort: 'Requires building data pipelines, cleaning datasets, and generating comprehensive reports using analytics tools.'
+    effort: 'Requires building data pipelines, cleaning datasets, and generating comprehensive reports using analytics tools.',
+    badgeId: '87cb6c58-e1d1-48c7-96d6-bf68b7b1f243',
+    verifyUrl: 'https://www.credly.com/badges/87cb6c58-e1d1-48c7-96d6-bf68b7b1f243'
   },
   {
     id: 'fit-dbms',
@@ -245,7 +280,9 @@ const certData = [
     image: '/certs/fit-academy.png',
     description: 'Specialized training in database management and utilizing Microsoft Power BI for advanced business intelligence.',
     difficulty: 'Advanced',
-    effort: 'Requires designing complex relational databases and building interactive, dynamic Power BI dashboards from scratch.'
+    effort: 'Requires designing complex relational databases and building interactive, dynamic Power BI dashboards from scratch.',
+    badgeId: '4abc3aebb5b251a9a4fc3fbbf7a4113023300bb9ec39e6efc4c7b57705c9d749',
+    verifyUrl: '#'
   },
   {
     id: 'eastwest-cyber1',
@@ -254,7 +291,9 @@ const certData = [
     image: '/certs/eastwest-cyber.png',
     description: 'Foundational training covering the primary pillars of information security and organizational defense.',
     difficulty: 'Beginner',
-    effort: 'Requires understanding the CIA triad, risk management, and fundamental access control mechanisms.'
+    effort: 'Requires understanding the CIA triad, risk management, and fundamental access control mechanisms.',
+    badgeId: '55dd99a5-f7ff-41d4-8076-484f2fb80e0d',
+    verifyUrl: '#'
   }
 ];
 
@@ -292,10 +331,76 @@ function FadeInSection(props) {
   );
 }
 
+// Magnetic Button Hook
+function useMagnetic() {
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const element = ref.current;
+    if (!element) return;
+
+    const handleMouseMove = (e) => {
+      const rect = element.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      
+      // Calculate pull based on distance
+      const distance = Math.sqrt(x*x + y*y);
+      if (distance < 100) {
+        element.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+      } else {
+        element.style.transform = `translate(0px, 0px)`;
+      }
+    };
+
+    const handleMouseLeave = () => {
+      element.style.transform = `translate(0px, 0px)`;
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    element.addEventListener('mouseleave', handleMouseLeave);
+
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      if (element) element.removeEventListener('mouseleave', handleMouseLeave);
+    };
+  }, []);
+
+  return ref;
+}
+
 function App() {
   const [activeCert, setActiveCert] = useState(null);
   const [activeSkill, setActiveSkill] = useState(null);
   const [formStatus, setFormStatus] = useState('');
+  
+  // Custom Cursor logic
+  const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
+  const [isHovering, setIsHovering] = useState(false);
+  
+  const magBtn1 = useMagnetic();
+  const magBtn2 = useMagnetic();
+
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      setCursorPos({ x: e.clientX, y: e.clientY });
+      
+      // Check if hovering over clickable elements
+      const target = e.target;
+      if (target.closest('a') || target.closest('button') || target.closest('.clickable-card')) {
+        setIsHovering(true);
+      } else {
+        setIsHovering(false);
+      }
+    };
+    
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
+  const particlesInit = useCallback(async engine => {
+    await loadSlim(engine);
+  }, []);
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
@@ -347,6 +452,11 @@ function App() {
 
   return (
     <>
+      <div 
+        className={`custom-cursor ${isHovering ? 'hovering' : ''}`} 
+        style={{ left: `${cursorPos.x}px`, top: `${cursorPos.y}px` }}
+      ></div>
+
       <nav className="navbar glass-panel">
         <div className="nav-content container">
           <h2 className="logo">Mark.</h2>
@@ -365,21 +475,63 @@ function App() {
         
         <FadeInSection>
           <section id="hero" className="hero-section">
+            <Particles 
+              id="tsparticles" 
+              init={particlesInit} 
+              options={{
+                fullScreen: { enable: false, zIndex: -1 },
+                background: { color: "transparent" },
+                particles: {
+                  number: { value: 40, density: { enable: true, value_area: 800 } },
+                  color: { value: ["#c084fc", "#00f0ff"] },
+                  links: { enable: true, color: "#ffffff", opacity: 0.1, distance: 150 },
+                  move: { enable: true, speed: 1 },
+                  size: { value: { min: 1, max: 3 } },
+                  opacity: { value: 0.3 }
+                },
+                interactivity: {
+                  events: {
+                    onHover: { enable: true, mode: "grab" },
+                  },
+                  modes: { grab: { distance: 140, links: { opacity: 0.5 } } }
+                }
+              }}
+              className="particles-canvas"
+            />
+            
             <img src="/profile.jpg" alt="Mark Angel Guevarra" className="profile-pic" />
             <h1 className="hero-title">
               Hi, I'm <span className="highlight-cyan">Mark Angel</span>.<br/>
               I build <span className="highlight-purple">Secure & Automated</span> Systems.
             </h1>
-            <p className="hero-subtitle">
-              Bachelor of Science in Information Technology <br/>
-              Network Administrator | Cisco Certified | Cybersecurity Analyst
-            </p>
+            
+            <div className="hero-subtitle type-wrap">
+              <TypeAnimation
+                sequence={[
+                  '> Cybersecurity Analyst_',
+                  2000,
+                  '> Network Administrator_',
+                  2000,
+                  '> Cisco Certified Professional_',
+                  2000,
+                ]}
+                wrapper="span"
+                speed={50}
+                repeat={Infinity}
+                style={{ fontSize: '1.25rem', color: 'var(--text-secondary)' }}
+              />
+            </div>
+            
             <div className="hero-cta">
-              <a href="#certifications" className="btn-primary">View Credentials</a>
-              <a href="/resume.pdf" target="_blank" rel="noreferrer" className="btn-secondary resume-btn">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-                Download Resume
-              </a>
+              <div ref={magBtn1} style={{transition: 'transform 0.1s ease-out'}}>
+                <a href="#certifications" className="btn-primary">View Credentials</a>
+              </div>
+              <div ref={magBtn2} style={{transition: 'transform 0.1s ease-out'}}>
+                <a href="/resume.pdf" target="_blank" rel="noreferrer" className="btn-secondary resume-btn">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                  Download Resume
+                </a>
+              </div>
             </div>
           </section>
         </FadeInSection>
@@ -460,7 +612,7 @@ function App() {
             <h2 className="section-title">Featured Projects</h2>
             <div className="projects-grid">
               {projectsData.map((project) => (
-                <div key={project.id} className="project-card glass-panel">
+                <div key={project.id} className="project-card glass-panel clickable-card">
                   <div className="project-header">
                     <span className="project-icon">{project.icon}</span>
                     <span className="project-category">{project.category}</span>
@@ -481,7 +633,7 @@ function App() {
         <FadeInSection>
           <section id="certifications" className="certs-section">
             <h2 className="section-title">Featured Certifications</h2>
-            <p className="section-subtitle" style={{textAlign: 'center', color: 'var(--text-secondary)', marginBottom: '3rem', fontSize: '1.1rem'}}>Click on any certification to learn more about the requirements.</p>
+            <p className="section-subtitle" style={{textAlign: 'center', color: 'var(--text-secondary)', marginBottom: '3rem', fontSize: '1.1rem'}}>Click on any certification to view authenticity details.</p>
             <div className="certs-grid">
               
               {certData.map((cert) => (
@@ -492,7 +644,7 @@ function App() {
                     <span className="cert-issuer">{cert.issuer}</span>
                   </div>
                   <div className="cert-overlay">
-                    <span>View Details</span>
+                    <span>View Verification</span>
                   </div>
                 </div>
               ))}
@@ -509,13 +661,13 @@ function App() {
                 <h3>Let's Secure the Future</h3>
                 <p>Whether you have a question, an opportunity, or just want to say hi, I'll try my best to get back to you!</p>
                 <div className="contact-details">
-                  <a href="mailto:marcangelguevarra@gmail.com" className="contact-link">
+                  <a href="mailto:marcangelguevarra@gmail.com" className="contact-link clickable-card">
                     📧 marcangelguevarra@gmail.com
                   </a>
-                  <a href="https://www.linkedin.com/in/mark-angel-guevarra/" target="_blank" rel="noreferrer" className="contact-link">
+                  <a href="https://www.linkedin.com/in/mark-angel-guevarra/" target="_blank" rel="noreferrer" className="contact-link clickable-card">
                     💼 LinkedIn Profile
                   </a>
-                  <a href="https://github.com/Markyy0411" target="_blank" rel="noreferrer" className="contact-link">
+                  <a href="https://github.com/Markyy0411" target="_blank" rel="noreferrer" className="contact-link clickable-card">
                     🐙 GitHub Repositories
                   </a>
                 </div>
@@ -534,7 +686,7 @@ function App() {
                   <label htmlFor="message">Message</label>
                   <textarea id="message" name="message" rows="5" required placeholder="Hello Mark..."></textarea>
                 </div>
-                <button type="submit" className="btn-primary form-submit">Send Message</button>
+                <button type="submit" className="btn-primary form-submit clickable-card">Send Message</button>
                 {formStatus && <p style={{color: 'var(--accent-cyan)', marginTop: '1rem', fontWeight: '600'}}>{formStatus}</p>}
               </form>
             </div>
@@ -553,7 +705,7 @@ function App() {
       {activeCert && (
         <div className="modal-backdrop" onClick={closeCertModal}>
           <div className="modal-content glass-panel" onClick={(e) => e.stopPropagation()}>
-            <button className="modal-close" onClick={closeCertModal}>✕</button>
+            <button className="modal-close clickable-card" onClick={closeCertModal}>✕</button>
             <img src={activeCert.image} alt={activeCert.title} className="modal-image" />
             
             <div className="modal-header">
@@ -563,6 +715,17 @@ function App() {
             
             <p className="modal-description">{activeCert.description}</p>
             
+            <div className="verification-box">
+              <div className="verification-info">
+                <span className="verification-label">Credential ID</span>
+                <span className="verification-id">{activeCert.badgeId}</span>
+              </div>
+              <a href={activeCert.verifyUrl} target="_blank" rel="noreferrer" className="btn-primary verify-btn clickable-card">
+                Verify Authenticity
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+              </a>
+            </div>
+
             <div className="modal-difficulty-box">
               <div className="difficulty-header">
                 <h3>Acquisition Effort</h3>
@@ -580,7 +743,7 @@ function App() {
       {activeSkill && (
         <div className="modal-backdrop" onClick={closeSkillModal}>
           <div className="modal-content glass-panel skill-modal" onClick={(e) => e.stopPropagation()}>
-            <button className="modal-close" onClick={closeSkillModal}>✕</button>
+            <button className="modal-close clickable-card" onClick={closeSkillModal}>✕</button>
             
             <div className="modal-skill-icon-wrap">
                <activeSkill.Icon />
