@@ -16,6 +16,7 @@ function App() {
 
       <main className="container animate-fade-in">
         <section id="hero" className="hero-section">
+          <img src="/certs/profile.jpg" alt="Mark Angel Guevarra" className="profile-pic" />
           <h1 className="hero-title">
             Hi, I'm <span className="highlight-cyan">Mark Angel</span>.<br/>
             I build <span className="highlight-purple">Secure & Automated</span> Systems.
@@ -58,48 +59,95 @@ function App() {
         <section id="certifications" className="certs-section">
           <h2 className="section-title">Featured Certifications</h2>
           <div className="certs-grid">
+            
             <div className="cert-card glass-panel">
+              <img src="/certs/google-python.png" alt="Google IT Automation" className="cert-image" />
               <div className="cert-header">
                 <h3>Google IT Automation with Python</h3>
                 <span className="cert-issuer">Google</span>
               </div>
-              <p>Official certificate demonstrating proficiency in Python, Git, and IT automation.</p>
             </div>
+
             <div className="cert-card glass-panel">
+              <img src="/certs/google-cyber.png" alt="Google Cybersecurity" className="cert-image" />
               <div className="cert-header">
                 <h3>Google Cybersecurity Professional</h3>
                 <span className="cert-issuer">Google</span>
               </div>
-              <p>Hands-on experience with fundamental cybersecurity concepts, including Linux, SQL, SIEM tools, and network security.</p>
             </div>
+
             <div className="cert-card glass-panel">
+              <img src="/certs/aws-cloud.png" alt="AWS Cloud Operations" className="cert-image" />
               <div className="cert-header">
                 <h3>AWS Academy Cloud Operations</h3>
                 <span className="cert-issuer">AWS</span>
               </div>
-              <p>Completed the AWS Academy Cloud Operations course and hands-on labs.</p>
             </div>
+            
             <div className="cert-card glass-panel">
+              <img src="/certs/cisco-cyber.png" alt="Intro to Cybersecurity" className="cert-image" />
+              <div className="cert-header">
+                <h3>Intro to Cybersecurity</h3>
+                <span className="cert-issuer">Cisco</span>
+              </div>
+            </div>
+
+            <div className="cert-card glass-panel">
+              <img src="/certs/cisco-ethical.png" alt="Ethical Hacker" className="cert-image" />
               <div className="cert-header">
                 <h3>Ethical Hacker</h3>
                 <span className="cert-issuer">Cisco</span>
               </div>
-              <p>Network architecture and penetration testing basics.</p>
             </div>
+
             <div className="cert-card glass-panel">
+              <img src="/certs/cisco-linux.png" alt="Linux Essentials" className="cert-image" />
               <div className="cert-header">
                 <h3>Linux Essentials</h3>
                 <span className="cert-issuer">Cisco</span>
               </div>
-              <p>Linux administration, command line, and server management.</p>
             </div>
+
             <div className="cert-card glass-panel">
+              <img src="/certs/cisco-networking.png" alt="Networking Devices" className="cert-image" />
+              <div className="cert-header">
+                <h3>Networking Devices & OS Basics</h3>
+                <span className="cert-issuer">Cisco</span>
+              </div>
+            </div>
+
+            <div className="cert-card glass-panel">
+              <img src="/certs/cisco-hardware.png" alt="Computer Hardware Basics" className="cert-image" />
+              <div className="cert-header">
+                <h3>Computer Hardware Basics</h3>
+                <span className="cert-issuer">Cisco</span>
+              </div>
+            </div>
+
+            <div className="cert-card glass-panel">
+              <img src="/certs/cisco-ite.png" alt="IT Essentials" className="cert-image" />
               <div className="cert-header">
                 <h3>IT Essentials</h3>
                 <span className="cert-issuer">Cisco</span>
               </div>
-              <p>Computer Hardware Troubleshooting and configuration.</p>
             </div>
+
+            <div className="cert-card glass-panel">
+              <img src="/certs/cisco-ai.png" alt="Intro to Modern AI" className="cert-image" />
+              <div className="cert-header">
+                <h3>Intro to Modern AI & IoT</h3>
+                <span className="cert-issuer">Cisco</span>
+              </div>
+            </div>
+
+            <div className="cert-card glass-panel">
+              <img src="/certs/cisco-data-science.png" alt="Data Science" className="cert-image" />
+              <div className="cert-header">
+                <h3>Intro to Data Science</h3>
+                <span className="cert-issuer">Cisco</span>
+              </div>
+            </div>
+
           </div>
         </section>
       </main>
