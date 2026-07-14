@@ -316,12 +316,6 @@ function App() {
     document.body.style.overflow = 'unset';
   };
 
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-    alert("Thank you for your message! I'll be in touch shortly.");
-    e.target.reset();
-  };
-
   return (
     <>
       <nav className="navbar glass-panel">
@@ -498,7 +492,7 @@ function App() {
                 </div>
               </div>
               
-              <form className="contact-form glass-panel" action="https://formspree.io/f/mqazqyyk" method="POST" onSubmit={handleFormSubmit}>
+              <form className="contact-form glass-panel" action="mailto:marcangelguevarra@gmail.com" method="POST" encType="text/plain">
                 <div className="form-group">
                   <label htmlFor="name">Name</label>
                   <input type="text" id="name" name="name" required placeholder="John Doe" />
