@@ -180,9 +180,17 @@
   border-color: var(--accent-purple);
 }
 
-.skill-icon {
-  font-size: 2.5rem;
+/* Animated SVG Icons */
+.skill-icon-container {
+  display: flex;
+  justify-content: center;
   margin-bottom: 1rem;
+}
+
+.animated-icon {
+  width: 50px;
+  height: 50px;
+  color: var(--accent-cyan);
 }
 
 .skill-card h3 {
@@ -510,4 +518,109 @@
   font-size: 0.95rem;
   line-height: 1.6;
   margin: 0;
+}
+
+/* Animations for SVGs */
+@keyframes scanLine {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}
+
+.shield .scan-line {
+  animation: scanLine 2s ease-in-out infinite;
+  stroke: var(--accent-purple);
+}
+
+@keyframes spinGear {
+  100% { transform: rotate(360deg); }
+}
+
+.gears .gear-spin {
+  transform-origin: center;
+  animation: spinGear 6s linear infinite;
+}
+
+@keyframes pulseCloud {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.05); opacity: 1; }
+}
+
+.cloud .cloud-pulse {
+  transform-origin: center;
+  animation: pulseCloud 3s ease-in-out infinite;
+}
+
+@keyframes growBar {
+  0% { transform: scaleY(0); }
+  100% { transform: scaleY(1); }
+}
+
+.chart .bar {
+  transform-origin: bottom;
+  animation: growBar 1s ease-out forwards;
+}
+
+.chart .bar-1 { animation-delay: 0.1s; }
+.chart .bar-2 { animation-delay: 0.3s; }
+.chart .bar-3 { animation-delay: 0.5s; }
+
+/* Skill Modal Styling */
+.modal-skill-icon-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.modal-skill-icon-wrap .animated-icon {
+  width: 80px;
+  height: 80px;
+  color: var(--accent-purple);
+  filter: drop-shadow(0 0 10px rgba(192, 132, 252, 0.4));
+}
+
+.skill-modal {
+  text-align: center;
+}
+
+.skill-focus-box {
+  background: rgba(16, 185, 129, 0.1);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-left: 4px solid var(--accent-cyan);
+  text-align: left;
+}
+
+.skill-focus-box h3 {
+  font-size: 1.1rem;
+  color: var(--text-primary);
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+.skill-focus-box p {
+  margin: 0;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.skill-details {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: left;
+  border-left: 4px solid var(--accent-purple);
+}
+
+.skill-details h3 {
+  font-size: 1.1rem;
+  color: var(--text-primary);
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+.skill-details p {
+  margin: 0;
+  color: var(--text-secondary);
+  line-height: 1.6;
 }
