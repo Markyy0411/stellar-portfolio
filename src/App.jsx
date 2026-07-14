@@ -61,11 +61,7 @@ function App() {
           <div className="certs-grid">
 
             <div className="cert-card glass-panel">
-              <a href="/certs/microsoft.pdf" target="_blank" rel="noreferrer" className="pdf-link">
-                <div className="cert-image pdf-placeholder">
-                  <span>📄 View PDF Certificate</span>
-                </div>
-              </a>
+              <img src="/certs/microsoft.png" alt="Microsoft Certification" className="cert-image" />
               <div className="cert-header">
                 <h3>Microsoft Certification</h3>
                 <span className="cert-issuer">Microsoft</span>
