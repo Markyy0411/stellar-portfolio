@@ -910,4 +910,37 @@
   .contact-container {
     grid-template-columns: 1fr;
   }
+  
+  /* Mobile Icon & Padding Optimizations */
+  .animated-icon {
+    width: 35px;
+    height: 35px;
+  }
+  
+  .modal-skill-icon-wrap .animated-icon {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .project-icon {
+    font-size: 1.5rem;
+  }
+  
+  .skill-card, .project-card, .cert-card {
+    padding: 1.5rem;
+  }
+  
+  .timeline-item {
+    padding-left: 2.5rem;
+  }
+  
+  .timeline-dot {
+    width: 14px;
+    height: 14px;
+    left: 14px;
+  }
+  
+  .hero-title {
+    font-size: 2.2rem;
+  }
 }
