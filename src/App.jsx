@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import './App.css'
 
 // Animated Icons
@@ -63,6 +63,33 @@ const skillsData = [
     focus: 'Transforming raw data into actionable business intelligence.',
     details: 'Skilled in modern Data Science methodologies, writing efficient SQL queries for complex database management, and crafting dynamic, interactive dashboards with Microsoft Power BI to drive data-informed decision-making.',
     Icon: AnimatedChart
+  }
+];
+
+const projectsData = [
+  {
+    id: 'packet-tracer',
+    title: 'Enterprise Network Topology',
+    category: 'Cisco Networking',
+    icon: '🌐',
+    description: 'Designed and simulated a comprehensive enterprise network architecture using Cisco Packet Tracer. Implemented VLANs, OSPF routing, and ACLs for secure subnetwork communication.',
+    tech: ['Cisco iOS', 'OSPF', 'VLAN', 'ACL']
+  },
+  {
+    id: 'securesync',
+    title: 'SecureSync Implementation',
+    category: 'Cybersecurity',
+    icon: '🔐',
+    description: 'Deployed a robust identity and access management framework enforcing zero-trust principles. Automated credential rotation and integrated multi-factor authentication protocols.',
+    tech: ['IAM', 'Python', 'Cryptography', 'Bash']
+  },
+  {
+    id: 'mms',
+    title: 'Maintenance Monitoring System',
+    category: 'IT Automation & Analytics',
+    icon: '📈',
+    description: 'Developed an MVP for a centralized IT monitoring dashboard. Aggregates system health metrics, automates alert dispatching, and visualizes uptime data via interactive reports.',
+    tech: ['Power BI', 'SQL', 'Python Scripts']
   }
 ];
 
@@ -231,6 +258,40 @@ const certData = [
   }
 ];
 
+function FadeInSection(props) {
+  const [isVisible, setVisible] = useState(false);
+  const domRef = useRef();
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          // Only animate once
+          if(domRef.current) observer.unobserve(domRef.current);
+        }
+      });
+    }, { threshold: 0.1 });
+    
+    if (domRef.current) {
+      observer.observe(domRef.current);
+    }
+    
+    return () => {
+      if (domRef.current) observer.unobserve(domRef.current);
+    };
+  }, []);
+
+  return (
+    <div
+      className={`fade-in-section ${isVisible ? 'is-visible' : ''}`}
+      ref={domRef}
+    >
+      {props.children}
+    </div>
+  );
+}
+
 function App() {
   const [activeCert, setActiveCert] = useState(null);
   const [activeSkill, setActiveSkill] = useState(null);
@@ -255,6 +316,12 @@ function App() {
     document.body.style.overflow = 'unset';
   };
 
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    alert("Thank you for your message! I'll be in touch shortly.");
+    e.target.reset();
+  };
+
   return (
     <>
       <nav className="navbar glass-panel">
@@ -262,94 +329,198 @@ function App() {
           <h2 className="logo">Mark.</h2>
           <div className="nav-links">
             <a href="#about">About</a>
+            <a href="#timeline">Journey</a>
             <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
             <a href="#certifications">Certifications</a>
             <a href="#contact">Contact</a>
           </div>
         </div>
       </nav>
 
-      <main className="container animate-fade-in">
-        <section id="hero" className="hero-section">
-          <img src="/profile.jpg" alt="Mark Angel Guevarra" className="profile-pic" />
-          <h1 className="hero-title">
-            Hi, I'm <span className="highlight-cyan">Mark Angel</span>.<br/>
-            I build <span className="highlight-purple">Secure & Automated</span> Systems.
-          </h1>
-          <p className="hero-subtitle">
-            Bachelor of Science in Information Technology <br/>
-            Network Administrator | Cisco Certified | Cybersecurity Analyst
-          </p>
-          <div className="hero-cta">
-            <a href="#certifications" className="btn-primary">View Credentials</a>
-            <a href="https://github.com/Markyy0411" target="_blank" rel="noreferrer" className="btn-secondary">GitHub Profile</a>
-          </div>
-        </section>
-
-        <section id="about" className="about-section">
-          <div className="about-content glass-panel">
-            <h2 className="section-title">About Me</h2>
-            <p>
-              Welcome! I'm <strong>Mark Angel Guevarra</strong>, a passionate Information Technology professional specializing in Cybersecurity, Network Administration, and IT Automation. With a strong foundation in building secure, scalable systems, I thrive at the intersection of infrastructure and innovation.
+      <main className="container">
+        
+        <FadeInSection>
+          <section id="hero" className="hero-section">
+            <img src="/profile.jpg" alt="Mark Angel Guevarra" className="profile-pic" />
+            <h1 className="hero-title">
+              Hi, I'm <span className="highlight-cyan">Mark Angel</span>.<br/>
+              I build <span className="highlight-purple">Secure & Automated</span> Systems.
+            </h1>
+            <p className="hero-subtitle">
+              Bachelor of Science in Information Technology <br/>
+              Network Administrator | Cisco Certified | Cybersecurity Analyst
             </p>
-            <p>
-              I hold a Bachelor of Science in Information Technology and am driven by continuous learning—having earned 18 industry-recognized certifications from tech leaders like <strong>Google, Cisco, AWS, and Microsoft</strong>. Whether it's defending networks against emerging threats, automating complex workflows with Python, or engineering cloud solutions, I am dedicated to creating secure and highly efficient digital environments.
-            </p>
-          </div>
-        </section>
+            <div className="hero-cta">
+              <a href="#certifications" className="btn-primary">View Credentials</a>
+              <a href="/resume.pdf" target="_blank" rel="noreferrer" className="btn-secondary resume-btn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                Download Resume
+              </a>
+            </div>
+          </section>
+        </FadeInSection>
 
-        <section id="skills" className="skills-section">
-          <h2 className="section-title">Technical Expertise</h2>
-          <p className="section-subtitle" style={{textAlign: 'center', color: 'var(--text-secondary)', marginBottom: '3rem', fontSize: '1.1rem'}}>Click on any domain to view my specific capabilities.</p>
-          <div className="skills-grid">
-            {skillsData.map((skill) => (
-              <div key={skill.id} className="skill-card glass-panel clickable-card" onClick={() => openSkillModal(skill)}>
-                <div className="skill-icon-container">
-                  <skill.Icon />
-                </div>
-                <h3>{skill.title}</h3>
-                <p>{skill.shortDesc}</p>
-                <div className="cert-overlay">
-                  <span>View Expertise</span>
+        <FadeInSection>
+          <section id="about" className="about-section">
+            <div className="about-content glass-panel">
+              <h2 className="section-title">About Me</h2>
+              <p>
+                Welcome! I'm <strong>Mark Angel Guevarra</strong>, a passionate Information Technology professional specializing in Cybersecurity, Network Administration, and IT Automation. With a strong foundation in building secure, scalable systems, I thrive at the intersection of infrastructure and innovation.
+              </p>
+              <p>
+                I hold a Bachelor of Science in Information Technology and am driven by continuous learning—having earned 18 industry-recognized certifications from tech leaders like <strong>Google, Cisco, AWS, and Microsoft</strong>. Whether it's defending networks against emerging threats, automating complex workflows with Python, or engineering cloud solutions, I am dedicated to creating secure and highly efficient digital environments.
+              </p>
+            </div>
+          </section>
+        </FadeInSection>
+
+        <FadeInSection>
+          <section id="timeline" className="timeline-section">
+            <h2 className="section-title">Professional Journey</h2>
+            <div className="timeline">
+              
+              <div className="timeline-item">
+                <div className="timeline-dot"></div>
+                <div className="timeline-content glass-panel">
+                  <h3>Cybersecurity Analyst</h3>
+                  <span className="timeline-date">Recent Focus</span>
+                  <p>Specializing in penetration testing, threat mitigation, and deploying robust IAM protocols to defend enterprise architectures.</p>
                 </div>
               </div>
-            ))}
-          </div>
-        </section>
 
-        <section id="certifications" className="certs-section">
-          <h2 className="section-title">Featured Certifications ({certData.length})</h2>
-          <p className="section-subtitle" style={{textAlign: 'center', color: 'var(--text-secondary)', marginBottom: '3rem', fontSize: '1.1rem'}}>Click on any certification to learn more about the requirements.</p>
-          <div className="certs-grid">
-            
-            {certData.map((cert) => (
-              <div key={cert.id} className="cert-card glass-panel clickable-card" onClick={() => openCertModal(cert)}>
-                <img src={cert.image} alt={cert.title} className="cert-image" />
-                <div className="cert-header">
-                  <h3>{cert.title}</h3>
-                  <span className="cert-issuer">{cert.issuer}</span>
-                </div>
-                <div className="cert-overlay">
-                  <span>View Details</span>
+              <div className="timeline-item">
+                <div className="timeline-dot"></div>
+                <div className="timeline-content glass-panel">
+                  <h3>Network Administrator</h3>
+                  <span className="timeline-date">Applied Experience</span>
+                  <p>Managing Cisco network topologies, configuring firewalls, and ensuring high-availability connections across diverse infrastructures.</p>
                 </div>
               </div>
-            ))}
 
-          </div>
-        </section>
+              <div className="timeline-item">
+                <div className="timeline-dot"></div>
+                <div className="timeline-content glass-panel">
+                  <h3>BS Information Technology</h3>
+                  <span className="timeline-date">Educational Foundation</span>
+                  <p>Developed a rigorous foundation in software engineering, database management, and systems administration.</p>
+                </div>
+              </div>
+
+            </div>
+          </section>
+        </FadeInSection>
+
+        <FadeInSection>
+          <section id="skills" className="skills-section">
+            <h2 className="section-title">Technical Expertise</h2>
+            <p className="section-subtitle" style={{textAlign: 'center', color: 'var(--text-secondary)', marginBottom: '3rem', fontSize: '1.1rem'}}>Click on any domain to view my specific capabilities.</p>
+            <div className="skills-grid">
+              {skillsData.map((skill) => (
+                <div key={skill.id} className="skill-card glass-panel clickable-card" onClick={() => openSkillModal(skill)}>
+                  <div className="skill-icon-container">
+                    <skill.Icon />
+                  </div>
+                  <h3>{skill.title}</h3>
+                  <p>{skill.shortDesc}</p>
+                  <div className="cert-overlay">
+                    <span>View Expertise</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        </FadeInSection>
+
+        <FadeInSection>
+          <section id="projects" className="projects-section">
+            <h2 className="section-title">Featured Projects</h2>
+            <div className="projects-grid">
+              {projectsData.map((project) => (
+                <div key={project.id} className="project-card glass-panel">
+                  <div className="project-header">
+                    <span className="project-icon">{project.icon}</span>
+                    <span className="project-category">{project.category}</span>
+                  </div>
+                  <h3>{project.title}</h3>
+                  <p>{project.description}</p>
+                  <div className="project-tech-list">
+                    {project.tech.map((t, index) => (
+                      <span key={index} className="tech-badge">{t}</span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        </FadeInSection>
+
+        <FadeInSection>
+          <section id="certifications" className="certs-section">
+            <h2 className="section-title">Featured Certifications ({certData.length})</h2>
+            <p className="section-subtitle" style={{textAlign: 'center', color: 'var(--text-secondary)', marginBottom: '3rem', fontSize: '1.1rem'}}>Click on any certification to learn more about the requirements.</p>
+            <div className="certs-grid">
+              
+              {certData.map((cert) => (
+                <div key={cert.id} className="cert-card glass-panel clickable-card" onClick={() => openCertModal(cert)}>
+                  <img src={cert.image} alt={cert.title} className="cert-image" />
+                  <div className="cert-header">
+                    <h3>{cert.title}</h3>
+                    <span className="cert-issuer">{cert.issuer}</span>
+                  </div>
+                  <div className="cert-overlay">
+                    <span>View Details</span>
+                  </div>
+                </div>
+              ))}
+
+            </div>
+          </section>
+        </FadeInSection>
+
+        <FadeInSection>
+          <section id="contact" className="contact-section">
+            <h2 className="section-title">Get In Touch</h2>
+            <div className="contact-container">
+              <div className="contact-info glass-panel">
+                <h3>Let's Secure the Future</h3>
+                <p>Whether you have a question, an opportunity, or just want to say hi, I'll try my best to get back to you!</p>
+                <div className="contact-details">
+                  <a href="mailto:marcangelguevarra@gmail.com" className="contact-link">
+                    📧 marcangelguevarra@gmail.com
+                  </a>
+                  <a href="https://www.linkedin.com/in/mark-angel-guevarra/" target="_blank" rel="noreferrer" className="contact-link">
+                    💼 LinkedIn Profile
+                  </a>
+                  <a href="https://github.com/Markyy0411" target="_blank" rel="noreferrer" className="contact-link">
+                    🐙 GitHub Repositories
+                  </a>
+                </div>
+              </div>
+              
+              <form className="contact-form glass-panel" action="https://formspree.io/f/mqazqyyk" method="POST" onSubmit={handleFormSubmit}>
+                <div className="form-group">
+                  <label htmlFor="name">Name</label>
+                  <input type="text" id="name" name="name" required placeholder="John Doe" />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="email">Email</label>
+                  <input type="email" id="email" name="email" required placeholder="john@example.com" />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="message">Message</label>
+                  <textarea id="message" name="message" rows="5" required placeholder="Hello Mark..."></textarea>
+                </div>
+                <button type="submit" className="btn-primary form-submit">Send Message</button>
+              </form>
+            </div>
+          </section>
+        </FadeInSection>
+
       </main>
       
-      <footer id="contact" className="footer glass-panel">
+      <footer className="footer glass-panel" style={{marginTop: '0'}}>
         <div className="container footer-content">
-          <div className="footer-cta">
-            <h2>Ready to secure the future?</h2>
-            <a href="mailto:marcangelguevarra@gmail.com" className="btn-primary">Get in Touch</a>
-          </div>
-          <div className="footer-links">
-            <a href="https://www.linkedin.com/in/mark-angel-guevarra/" target="_blank" rel="noreferrer">LinkedIn</a>
-            <a href="https://www.credly.com/users/marc-angel-guevarra" target="_blank" rel="noreferrer">Credly</a>
-            <a href="https://github.com/Markyy0411" target="_blank" rel="noreferrer">GitHub</a>
-          </div>
           <p className="copyright">© 2026 Mark Angel Guevarra. Designed for Stellar.</p>
         </div>
       </footer>
