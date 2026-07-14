@@ -57,16 +57,8 @@ function App() {
         </section>
 
         <section id="certifications" className="certs-section">
-          <h2 className="section-title">Featured Certifications</h2>
+          <h2 className="section-title">Featured Certifications ({18})</h2>
           <div className="certs-grid">
-
-            <div className="cert-card glass-panel">
-              <img src="/certs/microsoft.png" alt="Microsoft Certification" className="cert-image" />
-              <div className="cert-header">
-                <h3>Microsoft Certification</h3>
-                <span className="cert-issuer">Microsoft</span>
-              </div>
-            </div>
             
             <div className="cert-card glass-panel">
               <img src="/certs/google-python.png" alt="Google IT Automation" className="cert-image" />
@@ -91,11 +83,19 @@ function App() {
                 <span className="cert-issuer">AWS</span>
               </div>
             </div>
+
+            <div className="cert-card glass-panel">
+              <img src="/certs/microsoft.png" alt="Microsoft Office Specialist" className="cert-image" />
+              <div className="cert-header">
+                <h3>Microsoft Office Specialist: Excel Associate</h3>
+                <span className="cert-issuer">Microsoft</span>
+              </div>
+            </div>
             
             <div className="cert-card glass-panel">
-              <img src="/certs/cisco-cyber.png" alt="Intro to Cybersecurity" className="cert-image" />
+              <img src="/certs/cisco-cyber.png" alt="Introduction to Cybersecurity" className="cert-image" />
               <div className="cert-header">
-                <h3>Intro to Cybersecurity</h3>
+                <h3>Introduction to Cybersecurity</h3>
                 <span className="cert-issuer">Cisco</span>
               </div>
             </div>
@@ -117,9 +117,17 @@ function App() {
             </div>
 
             <div className="cert-card glass-panel">
-              <img src="/certs/cisco-networking.png" alt="Networking Devices" className="cert-image" />
+              <img src="/certs/cisco-networking.png" alt="Networking Basics" className="cert-image" />
               <div className="cert-header">
-                <h3>Networking Devices & OS Basics</h3>
+                <h3>Networking Basics</h3>
+                <span className="cert-issuer">Cisco</span>
+              </div>
+            </div>
+
+            <div className="cert-card glass-panel">
+              <img src="/certs/cisco-os-basics.png" alt="Operating Systems Basics" className="cert-image" />
+              <div className="cert-header">
+                <h3>Operating Systems Basics</h3>
                 <span className="cert-issuer">Cisco</span>
               </div>
             </div>
@@ -141,18 +149,62 @@ function App() {
             </div>
 
             <div className="cert-card glass-panel">
-              <img src="/certs/cisco-ai.png" alt="Intro to Modern AI" className="cert-image" />
+              <img src="/certs/cisco-ai.png" alt="Introduction to Modern AI" className="cert-image" />
               <div className="cert-header">
-                <h3>Intro to Modern AI & IoT</h3>
+                <h3>Introduction to Modern AI</h3>
                 <span className="cert-issuer">Cisco</span>
               </div>
             </div>
 
             <div className="cert-card glass-panel">
-              <img src="/certs/cisco-data-science.png" alt="Data Science" className="cert-image" />
+              <img src="/certs/cisco-iot.png" alt="Introduction to IoT" className="cert-image" />
               <div className="cert-header">
-                <h3>Intro to Data Science</h3>
+                <h3>Introduction to IoT</h3>
                 <span className="cert-issuer">Cisco</span>
+              </div>
+            </div>
+
+            <div className="cert-card glass-panel">
+              <img src="/certs/cisco-data-science.png" alt="Introduction to Data Science" className="cert-image" />
+              <div className="cert-header">
+                <h3>Introduction to Data Science</h3>
+                <span className="cert-issuer">Cisco</span>
+              </div>
+            </div>
+
+            <div className="cert-card glass-panel">
+              <img src="/certs/cisco-digital-awareness.png" alt="Digital Awareness" className="cert-image" />
+              <div className="cert-header">
+                <h3>Digital Awareness</h3>
+                <span className="cert-issuer">Cisco</span>
+              </div>
+            </div>
+
+            <div className="cert-card glass-panel">
+              <img src="/certs/cisco-data-analytics.png" alt="Data Analytics Essentials" className="cert-image" />
+              <div className="cert-header">
+                <h3>Data Analytics Essentials</h3>
+                <span className="cert-issuer">Cisco</span>
+              </div>
+            </div>
+
+            <div className="cert-card glass-panel">
+              <div className="cert-image pdf-placeholder" style={{cursor: 'default'}}>
+                  <span style={{textAlign: 'center', padding: '1rem'}}>🏆 <br/><br/>FIT Academy <br/> Database Management</span>
+              </div>
+              <div className="cert-header">
+                <h3 style={{fontSize: '1rem'}}>Smartbooks & Power BI DBMS</h3>
+                <span className="cert-issuer">FIT</span>
+              </div>
+            </div>
+
+            <div className="cert-card glass-panel">
+              <div className="cert-image pdf-placeholder" style={{cursor: 'default'}}>
+                  <span style={{textAlign: 'center', padding: '1rem'}}>🏆 <br/><br/>East West <br/> Cybersecurity 1</span>
+              </div>
+              <div className="cert-header">
+                <h3 style={{fontSize: '1rem'}}>Introduction to Cybersecurity 1</h3>
+                <span className="cert-issuer">East West</span>
               </div>
             </div>
 
