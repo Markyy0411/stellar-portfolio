@@ -480,7 +480,7 @@ function App() {
 
         <FadeInSection>
           <section id="certifications" className="certs-section">
-            <h2 className="section-title">Featured Certifications ({certData.length})</h2>
+            <h2 className="section-title">Featured Certifications</h2>
             <p className="section-subtitle" style={{textAlign: 'center', color: 'var(--text-secondary)', marginBottom: '3rem', fontSize: '1.1rem'}}>Click on any certification to learn more about the requirements.</p>
             <div className="certs-grid">
               
