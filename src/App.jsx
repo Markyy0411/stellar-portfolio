@@ -509,14 +509,14 @@ function App() {
               <TypeAnimation
                 sequence={[
                   '> Cybersecurity Analyst_',
-                  2000,
+                  1500,
                   '> Network Administrator_',
-                  2000,
+                  1500,
                   '> Cisco Certified Professional_',
-                  2000,
+                  1500,
                 ]}
                 wrapper="span"
-                speed={50}
+                speed={75}
                 repeat={Infinity}
                 style={{ fontSize: '1.25rem', color: 'var(--text-secondary)' }}
               />
