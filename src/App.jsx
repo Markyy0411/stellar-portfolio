@@ -295,6 +295,35 @@ function FadeInSection(props) {
 function App() {
   const [activeCert, setActiveCert] = useState(null);
   const [activeSkill, setActiveSkill] = useState(null);
+  const [formStatus, setFormStatus] = useState('');
+
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    setFormStatus('Sending secure message...');
+
+    const formData = new FormData(e.target);
+    const data = Object.fromEntries(formData.entries());
+
+    try {
+      const response = await fetch("https://formsubmit.co/ajax/marcangelguevarra@gmail.com", {
+        method: "POST",
+        headers: { 
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify(data)
+      });
+      
+      if (response.ok) {
+        setFormStatus('Message securely sent! (Check your email for 1st-time activation)');
+        e.target.reset();
+      } else {
+        setFormStatus('Error sending message. Please try again.');
+      }
+    } catch (error) {
+      setFormStatus('Error sending message. Please try again.');
+    }
+  };
 
   const openCertModal = (cert) => {
     setActiveCert(cert);
@@ -492,7 +521,7 @@ function App() {
                 </div>
               </div>
               
-              <form className="contact-form glass-panel" action="mailto:marcangelguevarra@gmail.com" method="POST" encType="text/plain">
+              <form className="contact-form glass-panel" onSubmit={handleFormSubmit}>
                 <div className="form-group">
                   <label htmlFor="name">Name</label>
                   <input type="text" id="name" name="name" required placeholder="John Doe" />
@@ -506,6 +535,7 @@ function App() {
                   <textarea id="message" name="message" rows="5" required placeholder="Hello Mark..."></textarea>
                 </div>
                 <button type="submit" className="btn-primary form-submit">Send Message</button>
+                {formStatus && <p style={{color: 'var(--accent-cyan)', marginTop: '1rem', fontWeight: '600'}}>{formStatus}</p>}
               </form>
             </div>
           </section>
