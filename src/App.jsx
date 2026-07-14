@@ -16,7 +16,7 @@ function App() {
 
       <main className="container animate-fade-in">
         <section id="hero" className="hero-section">
-          <img src="/certs/profile.jpg" alt="Mark Angel Guevarra" className="profile-pic" />
+          <img src="/profile.jpg" alt="Mark Angel Guevarra" className="profile-pic" />
           <h1 className="hero-title">
             Hi, I'm <span className="highlight-cyan">Mark Angel</span>.<br/>
             I build <span className="highlight-purple">Secure & Automated</span> Systems.
