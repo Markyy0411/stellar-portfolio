@@ -59,6 +59,14 @@ function App() {
         <section id="certifications" className="certs-section">
           <h2 className="section-title">Featured Certifications</h2>
           <div className="certs-grid">
+
+            <div className="cert-card glass-panel">
+              <embed src="/certs/microsoft.pdf#toolbar=0&navpanes=0&scrollbar=0" type="application/pdf" className="cert-image" />
+              <div className="cert-header">
+                <h3>Microsoft Certification</h3>
+                <span className="cert-issuer">Microsoft</span>
+              </div>
+            </div>
             
             <div className="cert-card glass-panel">
               <img src="/certs/google-python.png" alt="Google IT Automation" className="cert-image" />
