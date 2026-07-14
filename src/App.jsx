@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import './App.css'
 
 const certData = [
@@ -311,6 +312,7 @@ function App() {
           </div>
         </div>
       )}
+      <Analytics />
     </>
   )
 }
