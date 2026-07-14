@@ -1,6 +1,184 @@
+import { useState } from 'react';
 import './App.css'
 
+const certData = [
+  {
+    id: 'google-python',
+    title: 'Google IT Automation with Python',
+    issuer: 'Google',
+    image: '/certs/google-python.png',
+    description: 'This six-course certificate, developed by Google, is designed to provide IT professionals with in-demand skills -- including Python, Git, and IT automation.',
+    difficulty: 'Advanced',
+    effort: 'Requires passing rigorous programming assignments, mastering version control with Git, and automating system administration tasks with Python scripts.'
+  },
+  {
+    id: 'google-cyber',
+    title: 'Google Cybersecurity Professional',
+    issuer: 'Google',
+    image: '/certs/google-cyber.png',
+    description: 'A comprehensive program covering the fundamental concepts of cybersecurity, including network security, Linux, SQL, and SIEM tools.',
+    difficulty: 'Intermediate',
+    effort: 'Requires completing multiple hands-on labs simulating real-world security breaches, configuring firewalls, and analyzing packet captures.'
+  },
+  {
+    id: 'aws-cloud',
+    title: 'AWS Academy Cloud Operations',
+    issuer: 'AWS',
+    image: '/certs/aws-cloud.png',
+    description: 'Prepares students for entry-level cloud computing careers, focusing on deploying, managing, and operating scalable systems on AWS.',
+    difficulty: 'Advanced',
+    effort: 'Requires a deep understanding of AWS services, networking, and security, proven through complex infrastructure deployment labs.'
+  },
+  {
+    id: 'microsoft-excel',
+    title: 'Microsoft Office Specialist: Excel Associate',
+    issuer: 'Microsoft',
+    image: '/certs/microsoft.png',
+    description: 'Validates skills in creating and managing worksheets and workbooks, creating cells and ranges, creating tables, and applying formulas and functions.',
+    difficulty: 'Intermediate',
+    effort: 'Requires passing a strict, timed, proctored exam demonstrating mastery over advanced data manipulation and complex nested formulas.'
+  },
+  {
+    id: 'cisco-cyber',
+    title: 'Introduction to Cybersecurity',
+    issuer: 'Cisco',
+    image: '/certs/cisco-cyber.png',
+    description: 'Explores cyber trends, threats, and staying safe in cyberspace, protecting personal and company data.',
+    difficulty: 'Beginner',
+    effort: 'Requires understanding core security principles, threat vectors, and basic mitigation strategies.'
+  },
+  {
+    id: 'cisco-ethical',
+    title: 'Ethical Hacker',
+    issuer: 'Cisco',
+    image: '/certs/cisco-ethical.png',
+    description: 'Focuses on offensive security tactics to discover and patch vulnerabilities before malicious actors can exploit them.',
+    difficulty: 'Advanced',
+    effort: 'Requires passing intensive penetration testing labs, mastering reconnaissance, scanning, gaining access, and covering tracks.'
+  },
+  {
+    id: 'cisco-linux',
+    title: 'Linux Essentials',
+    issuer: 'Cisco',
+    image: '/certs/cisco-linux.png',
+    description: 'Validates foundational knowledge in the Linux operating system and open-source software.',
+    difficulty: 'Intermediate',
+    effort: 'Requires navigating the Linux command line, managing files, understanding permissions, and basic bash scripting.'
+  },
+  {
+    id: 'cisco-networking',
+    title: 'Networking Basics',
+    issuer: 'Cisco',
+    image: '/certs/cisco-networking.png',
+    description: 'Covers the architecture, structure, functions, components, and models of the Internet and other computer networks.',
+    difficulty: 'Intermediate',
+    effort: 'Requires understanding the OSI and TCP/IP models, IP addressing, and configuring basic network topologies.'
+  },
+  {
+    id: 'cisco-os-basics',
+    title: 'Operating Systems Basics',
+    issuer: 'Cisco',
+    image: '/certs/cisco-os-basics.png',
+    description: 'Provides a foundational understanding of operating system configuration and management.',
+    difficulty: 'Beginner',
+    effort: 'Requires grasping process management, memory management, and file systems across Windows and Linux environments.'
+  },
+  {
+    id: 'cisco-hardware',
+    title: 'Computer Hardware Basics',
+    issuer: 'Cisco',
+    image: '/certs/cisco-hardware.png',
+    description: 'Focuses on the internal components of a computer, assembling a system, and troubleshooting hardware issues.',
+    difficulty: 'Beginner',
+    effort: 'Requires identifying components, understanding their functions, and solving practical hardware failure scenarios.'
+  },
+  {
+    id: 'cisco-ite',
+    title: 'IT Essentials',
+    issuer: 'Cisco',
+    image: '/certs/cisco-ite.png',
+    description: 'A comprehensive curriculum covering PC hardware and software, mobile devices, networking, and troubleshooting.',
+    difficulty: 'Intermediate',
+    effort: 'Requires passing extensive theoretical exams and practical labs covering hardware diagnostics and software configurations.'
+  },
+  {
+    id: 'cisco-ai',
+    title: 'Introduction to Modern AI',
+    issuer: 'Cisco',
+    image: '/certs/cisco-ai.png',
+    description: 'Explores the foundations of Artificial Intelligence, Machine Learning, and their real-world applications.',
+    difficulty: 'Intermediate',
+    effort: 'Requires grasping the concepts of neural networks, data modeling, and ethical considerations in AI deployment.'
+  },
+  {
+    id: 'cisco-iot',
+    title: 'Introduction to IoT',
+    issuer: 'Cisco',
+    image: '/certs/cisco-iot.png',
+    description: 'Covers the Internet of Things, transforming digital business by connecting billions of smart devices.',
+    difficulty: 'Beginner',
+    effort: 'Requires understanding IoT architectures, sensor networks, and data flow from edge devices to the cloud.'
+  },
+  {
+    id: 'cisco-data-science',
+    title: 'Introduction to Data Science',
+    issuer: 'Cisco',
+    image: '/certs/cisco-data-science.png',
+    description: 'Provides a foundation in gathering, analyzing, and visualizing data to make informed decisions.',
+    difficulty: 'Intermediate',
+    effort: 'Requires applying statistical methods and utilizing Python libraries to extract insights from raw datasets.'
+  },
+  {
+    id: 'cisco-digital-awareness',
+    title: 'Digital Awareness',
+    issuer: 'Cisco',
+    image: '/certs/cisco-digital-awareness.png',
+    description: 'Focuses on responsible and secure use of digital technologies in professional environments.',
+    difficulty: 'Beginner',
+    effort: 'Requires demonstrating proficiency in digital communication, privacy, and online safety best practices.'
+  },
+  {
+    id: 'cisco-data-analytics',
+    title: 'Data Analytics Essentials',
+    issuer: 'Cisco',
+    image: '/certs/cisco-data-analytics.png',
+    description: 'Covers the fundamentals of data analysis, focusing on transforming data into actionable insights.',
+    difficulty: 'Intermediate',
+    effort: 'Requires building data pipelines, cleaning datasets, and generating comprehensive reports using analytics tools.'
+  },
+  {
+    id: 'fit-dbms',
+    title: 'Smartbooks & Power BI DBMS',
+    issuer: 'FIT Academy',
+    image: '/certs/fit-academy.png',
+    description: 'Specialized training in database management and utilizing Microsoft Power BI for advanced business intelligence.',
+    difficulty: 'Advanced',
+    effort: 'Requires designing complex relational databases and building interactive, dynamic Power BI dashboards from scratch.'
+  },
+  {
+    id: 'eastwest-cyber1',
+    title: 'Introduction to Cybersecurity 1',
+    issuer: 'East West',
+    image: '/certs/eastwest-cyber.png',
+    description: 'Foundational training covering the primary pillars of information security and organizational defense.',
+    difficulty: 'Beginner',
+    effort: 'Requires understanding the CIA triad, risk management, and fundamental access control mechanisms.'
+  }
+];
+
 function App() {
+  const [activeCert, setActiveCert] = useState(null);
+
+  const openModal = (cert) => {
+    setActiveCert(cert);
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeModal = () => {
+    setActiveCert(null);
+    document.body.style.overflow = 'unset';
+  };
+
   return (
     <>
       <nav className="navbar glass-panel">
@@ -70,152 +248,22 @@ function App() {
         </section>
 
         <section id="certifications" className="certs-section">
-          <h2 className="section-title">Featured Certifications ({18})</h2>
+          <h2 className="section-title">Featured Certifications ({certData.length})</h2>
+          <p className="section-subtitle" style={{textAlign: 'center', color: 'var(--text-secondary)', marginBottom: '3rem', fontSize: '1.1rem'}}>Click on any certification to learn more about the requirements.</p>
           <div className="certs-grid">
             
-            <div className="cert-card glass-panel">
-              <img src="/certs/google-python.png" alt="Google IT Automation" className="cert-image" />
-              <div className="cert-header">
-                <h3>Google IT Automation with Python</h3>
-                <span className="cert-issuer">Google</span>
+            {certData.map((cert) => (
+              <div key={cert.id} className="cert-card glass-panel clickable-card" onClick={() => openModal(cert)}>
+                <img src={cert.image} alt={cert.title} className="cert-image" />
+                <div className="cert-header">
+                  <h3>{cert.title}</h3>
+                  <span className="cert-issuer">{cert.issuer}</span>
+                </div>
+                <div className="cert-overlay">
+                  <span>View Details</span>
+                </div>
               </div>
-            </div>
-
-            <div className="cert-card glass-panel">
-              <img src="/certs/google-cyber.png" alt="Google Cybersecurity" className="cert-image" />
-              <div className="cert-header">
-                <h3>Google Cybersecurity Professional</h3>
-                <span className="cert-issuer">Google</span>
-              </div>
-            </div>
-
-            <div className="cert-card glass-panel">
-              <img src="/certs/aws-cloud.png" alt="AWS Cloud Operations" className="cert-image" />
-              <div className="cert-header">
-                <h3>AWS Academy Cloud Operations</h3>
-                <span className="cert-issuer">AWS</span>
-              </div>
-            </div>
-
-            <div className="cert-card glass-panel">
-              <img src="/certs/microsoft.png" alt="Microsoft Office Specialist" className="cert-image" />
-              <div className="cert-header">
-                <h3>Microsoft Office Specialist: Excel Associate</h3>
-                <span className="cert-issuer">Microsoft</span>
-              </div>
-            </div>
-            
-            <div className="cert-card glass-panel">
-              <img src="/certs/cisco-cyber.png" alt="Introduction to Cybersecurity" className="cert-image" />
-              <div className="cert-header">
-                <h3>Introduction to Cybersecurity</h3>
-                <span className="cert-issuer">Cisco</span>
-              </div>
-            </div>
-
-            <div className="cert-card glass-panel">
-              <img src="/certs/cisco-ethical.png" alt="Ethical Hacker" className="cert-image" />
-              <div className="cert-header">
-                <h3>Ethical Hacker</h3>
-                <span className="cert-issuer">Cisco</span>
-              </div>
-            </div>
-
-            <div className="cert-card glass-panel">
-              <img src="/certs/cisco-linux.png" alt="Linux Essentials" className="cert-image" />
-              <div className="cert-header">
-                <h3>Linux Essentials</h3>
-                <span className="cert-issuer">Cisco</span>
-              </div>
-            </div>
-
-            <div className="cert-card glass-panel">
-              <img src="/certs/cisco-networking.png" alt="Networking Basics" className="cert-image" />
-              <div className="cert-header">
-                <h3>Networking Basics</h3>
-                <span className="cert-issuer">Cisco</span>
-              </div>
-            </div>
-
-            <div className="cert-card glass-panel">
-              <img src="/certs/cisco-os-basics.png" alt="Operating Systems Basics" className="cert-image" />
-              <div className="cert-header">
-                <h3>Operating Systems Basics</h3>
-                <span className="cert-issuer">Cisco</span>
-              </div>
-            </div>
-
-            <div className="cert-card glass-panel">
-              <img src="/certs/cisco-hardware.png" alt="Computer Hardware Basics" className="cert-image" />
-              <div className="cert-header">
-                <h3>Computer Hardware Basics</h3>
-                <span className="cert-issuer">Cisco</span>
-              </div>
-            </div>
-
-            <div className="cert-card glass-panel">
-              <img src="/certs/cisco-ite.png" alt="IT Essentials" className="cert-image" />
-              <div className="cert-header">
-                <h3>IT Essentials</h3>
-                <span className="cert-issuer">Cisco</span>
-              </div>
-            </div>
-
-            <div className="cert-card glass-panel">
-              <img src="/certs/cisco-ai.png" alt="Introduction to Modern AI" className="cert-image" />
-              <div className="cert-header">
-                <h3>Introduction to Modern AI</h3>
-                <span className="cert-issuer">Cisco</span>
-              </div>
-            </div>
-
-            <div className="cert-card glass-panel">
-              <img src="/certs/cisco-iot.png" alt="Introduction to IoT" className="cert-image" />
-              <div className="cert-header">
-                <h3>Introduction to IoT</h3>
-                <span className="cert-issuer">Cisco</span>
-              </div>
-            </div>
-
-            <div className="cert-card glass-panel">
-              <img src="/certs/cisco-data-science.png" alt="Introduction to Data Science" className="cert-image" />
-              <div className="cert-header">
-                <h3>Introduction to Data Science</h3>
-                <span className="cert-issuer">Cisco</span>
-              </div>
-            </div>
-
-            <div className="cert-card glass-panel">
-              <img src="/certs/cisco-digital-awareness.png" alt="Digital Awareness" className="cert-image" />
-              <div className="cert-header">
-                <h3>Digital Awareness</h3>
-                <span className="cert-issuer">Cisco</span>
-              </div>
-            </div>
-
-            <div className="cert-card glass-panel">
-              <img src="/certs/cisco-data-analytics.png" alt="Data Analytics Essentials" className="cert-image" />
-              <div className="cert-header">
-                <h3>Data Analytics Essentials</h3>
-                <span className="cert-issuer">Cisco</span>
-              </div>
-            </div>
-
-            <div className="cert-card glass-panel">
-              <img src="/certs/fit-academy.png" alt="FIT Academy Database Management" className="cert-image" />
-              <div className="cert-header">
-                <h3 style={{fontSize: '1rem'}}>Smartbooks & Power BI DBMS</h3>
-                <span className="cert-issuer">FIT</span>
-              </div>
-            </div>
-
-            <div className="cert-card glass-panel">
-              <img src="/certs/eastwest-cyber.png" alt="East West Cybersecurity 1" className="cert-image" />
-              <div className="cert-header">
-                <h3 style={{fontSize: '1rem'}}>Introduction to Cybersecurity 1</h3>
-                <span className="cert-issuer">East West</span>
-              </div>
-            </div>
+            ))}
 
           </div>
         </section>
@@ -235,6 +283,33 @@ function App() {
           <p className="copyright">© 2026 Mark Angel Guevarra. Designed for Stellar.</p>
         </div>
       </footer>
+
+      {/* Modal Backdrop and Container */}
+      {activeCert && (
+        <div className="modal-backdrop" onClick={closeModal}>
+          <div className="modal-content glass-panel" onClick={(e) => e.stopPropagation()}>
+            <button className="modal-close" onClick={closeModal}>✕</button>
+            <img src={activeCert.image} alt={activeCert.title} className="modal-image" />
+            
+            <div className="modal-header">
+              <h2 className="modal-title">{activeCert.title}</h2>
+              <span className="cert-issuer modal-issuer">{activeCert.issuer}</span>
+            </div>
+            
+            <p className="modal-description">{activeCert.description}</p>
+            
+            <div className="modal-difficulty-box">
+              <div className="difficulty-header">
+                <h3>Acquisition Effort</h3>
+                <span className={`difficulty-badge ${activeCert.difficulty.toLowerCase()}`}>
+                  {activeCert.difficulty}
+                </span>
+              </div>
+              <p className="modal-effort">{activeCert.effort}</p>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   )
 }
