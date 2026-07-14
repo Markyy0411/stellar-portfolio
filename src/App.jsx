@@ -189,9 +189,7 @@ function App() {
             </div>
 
             <div className="cert-card glass-panel">
-              <div className="cert-image pdf-placeholder" style={{cursor: 'default'}}>
-                  <span style={{textAlign: 'center', padding: '1rem'}}>🏆 <br/><br/>FIT Academy <br/> Database Management</span>
-              </div>
+              <img src="/certs/fit-academy.png" alt="FIT Academy Database Management" className="cert-image" />
               <div className="cert-header">
                 <h3 style={{fontSize: '1rem'}}>Smartbooks & Power BI DBMS</h3>
                 <span className="cert-issuer">FIT</span>
@@ -199,9 +197,7 @@ function App() {
             </div>
 
             <div className="cert-card glass-panel">
-              <div className="cert-image pdf-placeholder" style={{cursor: 'default'}}>
-                  <span style={{textAlign: 'center', padding: '1rem'}}>🏆 <br/><br/>East West <br/> Cybersecurity 1</span>
-              </div>
+              <img src="/certs/eastwest-cyber.png" alt="East West Cybersecurity 1" className="cert-image" />
               <div className="cert-header">
                 <h3 style={{fontSize: '1rem'}}>Introduction to Cybersecurity 1</h3>
                 <span className="cert-issuer">East West</span>
