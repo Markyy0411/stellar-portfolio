@@ -1,16 +1,39 @@
-# React + Vite
+# Stellar Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+[![React](https://img.shields.io/badge/React-19.2-blue?logo=react)](https://react.dev/)
+[![Vite](https://img.shields.io/badge/Vite-8.1-purple?logo=vite)](https://vitejs.dev/)
+[![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-yellow?logo=javascript)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 
-Currently, two official plugins are available:
+A modern, interactive portfolio application built to showcase professional achievements with engaging visual effects.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🛠️ Core Competencies Demonstrated
+- **Frontend Development:** Leveraging React 19 for modular and performant UI component architecture.
+- **Modern Build Tooling:** Utilized Vite for rapid development cycles and efficient production bundling.
+- **Interactive Design:** Integrated particle systems and animation libraries to enhance user engagement.
+- **Performance Optimization:** Implemented streamlined project structures and optimized dependencies for fast loading.
 
-## React Compiler
+## 📂 Project Structure & Features
+- `src/`: Core application components and logic.
+- `public/`: Static assets and media.
+- **Interactive Particles:** Integrated `tsparticles` for sophisticated background effects.
+- **Dynamic Text Animations:** Leveraged `react-type-animation` for engaging project introductions.
+- **Linting:** Configured with `oxlint` to ensure high code quality standards.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🚀 Getting Started
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/Markyy0411/stellar-portfolio.git
+   ```
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+3. **Start the development server:**
+   ```bash
+   npm run dev
+   ```
 
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+## 📬 Let's Connect
+- **Developer:** Mark Guevarra
+- **Email:** [marcangelguevarra@gmail.com](mailto:marcangelguevarra@gmail.com)
+- **GitHub:** [@Markyy0411](https://github.com/Markyy0411)
