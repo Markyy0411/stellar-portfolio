@@ -764,7 +764,9 @@ function App() {
         <div className="modal-backdrop" onClick={closeCertModal}>
           <div className="modal-content glass-panel" onClick={(e) => e.stopPropagation()}>
             <button className="modal-close clickable-card" onClick={closeCertModal}>✕</button>
-            <img src={activeCert.modalImage || activeCert.image} alt={activeCert.title} className="modal-image" />
+            <a href={activeCert.modalImage || activeCert.image} target="_blank" rel="noreferrer" title="Click to view full size">
+              <img src={activeCert.modalImage || activeCert.image} alt={activeCert.title} className="modal-image clickable-card" />
+            </a>
             
             <div className="modal-header">
               <h2 className="modal-title">{activeCert.title}</h2>
