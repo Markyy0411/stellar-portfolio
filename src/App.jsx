@@ -801,9 +801,9 @@ function App() {
             <p className="modal-description" style={{marginTop: '1rem', marginBottom: '1.5rem'}}>{activeProject.description}</p>
             
             {activeProject.images && (
-              <div className="project-modal-gallery" style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+              <div className="project-modal-gallery" style={{ display: 'flex', flexDirection: 'column', gap: '1rem', alignItems: 'center' }}>
                 {activeProject.images.map((img, idx) => (
-                  <img key={idx} src={img} alt={`Project Event ${idx+1}`} style={{ width: '48%', borderRadius: '8px', objectFit: 'cover', border: '1px solid rgba(255,255,255,0.1)' }} />
+                  <img key={idx} src={img} alt={`Project Event ${idx+1}`} style={{ width: '100%', maxHeight: '350px', borderRadius: '8px', objectFit: 'contain', border: '1px solid rgba(255,255,255,0.1)' }} />
                 ))}
               </div>
             )}
