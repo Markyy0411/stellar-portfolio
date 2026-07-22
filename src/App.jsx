@@ -71,6 +71,15 @@ const skillsData = [
 
 const projectsData = [
   {
+    id: 'cisco-congress',
+    title: 'Cisco Student Congress',
+    category: 'Cybersecurity & Networking',
+    icon: '🏆',
+    description: 'Selected to represent Baliuag University at the 2026 Cisco Congress in Pampanga. Solved physical routing and cybersecurity CTF challenges using enterprise Cisco equipment.',
+    tech: ['Cisco iOS', 'Cybersecurity', 'CTF', 'Routing'],
+    images: ['/projects/cisco-1.jpg', '/projects/cisco-2.jpg']
+  },
+  {
     id: 'packet-tracer',
     title: 'Enterprise Network Topology',
     category: 'Cisco Networking',
@@ -372,6 +381,7 @@ function useMagnetic() {
 function App() {
   const [activeCert, setActiveCert] = useState(null);
   const [activeSkill, setActiveSkill] = useState(null);
+  const [activeProject, setActiveProject] = useState(null);
   const [formStatus, setFormStatus] = useState('');
   
   // Custom Cursor logic
@@ -437,6 +447,16 @@ function App() {
 
   const closeCertModal = () => {
     setActiveCert(null);
+    document.body.style.overflow = 'unset';
+  };
+
+  const openProjectModal = (project) => {
+    setActiveProject(project);
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeProjectModal = () => {
+    setActiveProject(null);
     document.body.style.overflow = 'unset';
   };
 
@@ -612,7 +632,7 @@ function App() {
             <h2 className="section-title">Featured Projects</h2>
             <div className="projects-grid">
               {projectsData.map((project) => (
-                <div key={project.id} className="project-card glass-panel clickable-card">
+                <div key={project.id} className="project-card glass-panel clickable-card" onClick={() => openProjectModal(project)}>
                   <div className="project-header">
                     <span className="project-icon">{project.icon}</span>
                     <span className="project-category">{project.category}</span>
@@ -623,6 +643,9 @@ function App() {
                     {project.tech.map((t, index) => (
                       <span key={index} className="tech-badge">{t}</span>
                     ))}
+                  </div>
+                  <div className="cert-overlay">
+                    <span>View Project Details</span>
                   </div>
                 </div>
               ))}
@@ -762,6 +785,28 @@ function App() {
               <h3>Technical Execution</h3>
               <p>{activeSkill.details}</p>
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* Project Modal */}
+      {activeProject && (
+        <div className="modal-backdrop" onClick={closeProjectModal}>
+          <div className="modal-content glass-panel" onClick={(e) => e.stopPropagation()}>
+            <button className="modal-close clickable-card" onClick={closeProjectModal}>✕</button>
+            <div className="modal-header">
+              <h2 className="modal-title">{activeProject.title}</h2>
+              <span className="cert-issuer modal-issuer">{activeProject.category}</span>
+            </div>
+            <p className="modal-description" style={{marginTop: '1rem', marginBottom: '1.5rem'}}>{activeProject.description}</p>
+            
+            {activeProject.images && (
+              <div className="project-modal-gallery" style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+                {activeProject.images.map((img, idx) => (
+                  <img key={idx} src={img} alt={`Project Event ${idx+1}`} style={{ width: '48%', borderRadius: '8px', objectFit: 'cover', border: '1px solid rgba(255,255,255,0.1)' }} />
+                ))}
+              </div>
+            )}
           </div>
         </div>
       )}
