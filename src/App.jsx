@@ -71,6 +71,23 @@ const skillsData = [
 
 const projectsData = [
   {
+    id: 'gigpay',
+    title: 'GigPay Escrow Marketplace',
+    category: 'Web3 & Blockchain',
+    icon: '⛓️',
+    description: 'A decentralized, zero-fee escrow marketplace built natively on the Stellar blockchain for global freelancers. Features an AI estimator, smart contract escrow, and Supabase real-time sync.',
+    tech: ['Stellar', 'Smart Contracts', 'React', 'Supabase'],
+    images: ['/projects/gigpay.png']
+  },
+  {
+    id: 'klasspay',
+    title: 'KlassPay Decentralized Split-Billing',
+    category: 'Web3 & Fintech',
+    icon: '💸',
+    description: 'A decentralized split-billing application leveraging blockchain technology for transparent, automated, and trustless shared group payments.',
+    tech: ['Web3', 'DeFi', 'Smart Contracts']
+  },
+  {
     id: 'cisco-congress',
     title: 'Cisco Student Congress',
     category: 'Cybersecurity & Networking',
